@@ -1,20 +1,26 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{ first + ' ' + last }}</h1>
+    <p class="people">
+      City : <i>{{person.city}}</i><br>
+      Phone: <i>{{ person.phone }}</i>
+    </p>
+  </div>
+</div>
+
 <div class="container">
-  <h2 class="text-center font-weight-light">People</h2>
-  <p-table [value]="person" [paginator]="true" [rows]="50">
+  <h2 class="text-center font-weight-light">Menu</h2>
+  <br>
+  <p-table [value]="transactions" [paginator]="true" [rows]="15">
     <ng-template pTemplate="header">
       <tr>
-        <th>Name</th>
-        <th>City</th>
-        <th>Phone</th>
+        <th>Item</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-people>
+    <ng-template pTemplate="body" let-transaction>
       <tr>
-        <td>{{ people.first_name + ' '  + people.last_name }}</td>
-        <td>{{ people.city }}</td>
-        <td>{{ people.phone }}</td>
+        <td>{{ transaction.item_name}}</td>
       </tr>
     </ng-template>
   </p-table>
-  <br><br>
 </div>

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask import jsonify
 from flask import make_response
 from flask import request
@@ -134,5 +134,37 @@ def find_bars_selling(beer):
 def get_bar_frequent_counts():
     try:
         return jsonify(database.get_bars_num_frequents())
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/transactions', methods=['GET'])
+def get_transactions():
+    try:
+        return jsonify(database.get_transactions())
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/transactions/employees/<name>', methods=['GET'])
+def get_transactions_employee(name):
+    try:
+        return jsonify(database.get_transactions_employee(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/transactions/person/<name>', methods=['GET'])
+def get_transactions_people(name):
+    try:
+        return jsonify(database.get_transactions_person(name))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route('/api/transactions/item', methods=['GET'])
+def get_transactions_item(item):
+    try:
+        return jsonify(database.get_transactions_item(item))
     except Exception as e:
         return make_response(str(e), 500)

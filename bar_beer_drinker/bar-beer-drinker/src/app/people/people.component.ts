@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {People, PeopleService} from "../people.service";
 import {HttpResponse} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
+import {Transaction} from "../transaction_service";
 
 declare const Highcharts: any;
 
@@ -16,12 +17,19 @@ export class PeopleComponent implements OnInit {
   first: string;
   last: string;
 
+  transactions: Transaction[];
+
+
   constructor(private peopleService: PeopleService, private route: ActivatedRoute) {
     route.paramMap.subscribe((paramMap) => {
       const split = paramMap.get("name").split("-");
 
       this.first = split[0];
       this.last = split[1];
+
+      peopleService.getTransactions(this.first, this.last).subscribe(data => {
+        this.transactions = data;
+      });
 
       peopleService.getPerson(this.first, this.last).subscribe(data => {
           this.person = data;

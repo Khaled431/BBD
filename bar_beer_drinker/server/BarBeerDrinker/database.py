@@ -126,7 +126,7 @@ def get_beer_manufacturers(item_name):
 
 def find_person(first):
     with engine.connect() as con:
-        query = sql.text("SELECT * FROM  people WHERE CONCAT(first_name, '-', last_name)= :first;")
+        query = sql.text("SELECT * FROM  people WHERE CONCAT(first_name, '-', last_name)= :first")
         rs = con.execute(query, first=first)
         result = rs.first()
         if result is None:
@@ -144,4 +144,31 @@ def get_employees():
     with engine.connect() as con:
         query = sql.text('SELECT * FROM employees')
         rs = con.execute(query)
+        return [dict(row) for row in rs]
+
+
+def get_transactions():
+    with engine.connect() as con:
+        rs = con.execute('SELECT * FROM transactions;')
+        return [dict(row) for row in rs]
+
+
+def get_transactions_employee(name):
+    with engine.connect() as con:
+        rs = con.execute(
+            "SELECT * FROM  transactions WHERE CONCAT(employee_first_name, '-', employee_last_name)= :name", name=name)
+        return [dict(row) for row in rs]
+
+
+def get_transactions_person(n):
+    with engine.connect() as con:
+        rs = con.execute("SELECT * FROM  transactions WHERE CONCAT(first_name, '-', last_name)= :name", name=n)
+        return [dict(row) for row in rs]
+
+
+def get_transactions_item(item_name):
+    with engine.connect() as con:
+        rs = con.execute(
+            'SELECT * FROM transactions WHERE item_name = :item_name;',
+            item_name=item_name)
         return [dict(row) for row in rs]
