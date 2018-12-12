@@ -1,0 +1,36 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome to Bar Beer Drinker!</h1>
+    <p class="lead">By Khaled Abdeljaber, Andy Val, and Mohammad Rahib.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <p-table [value]="bars">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Phone Number</th>
+        <th>Owner's First Name</th>
+        <th>Owner's Last Name</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-bar>
+      <tr>
+        <td>
+          <a routerLink="/bars/{{ bar.name }}">
+            {{ bar.name }}
+          </a>
+        </td>
+        <td>{{ bar.city }}</td>
+        <td>{{ bar.phone_number }}</td>
+        <td>{{ bar.owner_first }}</td>
+        <td>{{ bar.owner_last }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<br><br>
