@@ -11,7 +11,7 @@
 <div class="container">
   <h2 class="text-center font-weight-light">Menu</h2>
   <br>
-  <p-table [value]="menu">
+  <p-table [value]="menu" [paginator]="true" [rows]="15">
     <ng-template pTemplate="header">
       <tr>
         <th>Item</th>

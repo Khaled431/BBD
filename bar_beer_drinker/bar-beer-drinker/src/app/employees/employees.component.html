@@ -1,10 +1,9 @@
 <div class="container">
   <h2 class="text-center font-weight-light">Employees</h2>
-  <p-table [value]="employees" [paginator]="true" [rows]="10">
+  <p-table [value]="employees" [paginator]="true" [rows]="50">
     <ng-template pTemplate="header">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
         <th>Bar Name</th>
         <th>Shift-Hour-Start</th>
         <th>Shift-Hour-End</th>
@@ -12,10 +11,13 @@
 
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-beer>
+    <ng-template pTemplate="body" let-employee>
       <tr>
-        <td><a routerLink="/beers/{{ employees }}">{{ beer.name }}</a></td>
-        <td>{{ beer.manu }}</td>
+        <td><a routerLink="/people/{{ (employee.first_name + '-'  + employee.last_name) }}">{{ employee.first_name + ' '  + employee.last_name }}</a></td>
+        <td><a routerLink="/bars/{{ employee.bar_name }}">{{ employee.bar_name }}</a></td>
+        <td>{{ employee.shift_hour_start }}</td>
+        <td>{{ employee.shift_hour_end }}</td>
+        <td>{{ employee.shift_day_of_week }}</td>
       </tr>
     </ng-template>
   </p-table>

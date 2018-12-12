@@ -15,7 +15,7 @@
                 (onChange)="sortBy($event.value)"></p-dropdown>
   </div>
   <br>
-  <p-table [value]="beerLocations" sortMode="multiple" sortField="price">
+  <p-table [value]="beerLocations" sortMode="multiple" sortField="price" [paginator]="true" [rows]="50">
     <ng-template pTemplate="header">
       <tr>
         <th>Bar</th>

@@ -94,10 +94,18 @@ def get_likes():
         return make_response(str(e), 500)
 
 
-@app.route("/api/drinker", methods=["GET"])
-def get_drinkers():
+@app.route("/api/people", methods=["GET"])
+def get_people():
     try:
         return jsonify(database.get_people())
+    except Exception as e:
+        return make_response(str(e), 500)
+
+
+@app.route("/api/people/<name>", methods=["GET"])
+def find_person(name):
+    try:
+        return jsonify(database.find_person(first=name));
     except Exception as e:
         return make_response(str(e), 500)
 
@@ -105,7 +113,7 @@ def get_drinkers():
 @app.route("/api/employees", methods=["GET"])
 def get_employees():
     try:
-        return jsonify(database.get_employee_info())
+        return jsonify(database.get_employees())
     except Exception as e:
         return make_response(str(e), 500)
 

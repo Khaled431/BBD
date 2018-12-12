@@ -14,6 +14,7 @@ import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeersComponent } from './beers/beers.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { PeopleComponent } from './people/people.component';
 import { StatsComponent } from './stats/stats.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { StatsComponent } from './stats/stats.component';
     BeerDetailsComponent,
     BeersComponent,
     EmployeesComponent,
+    PeopleComponent,
     StatsComponent
   ],
   imports: [

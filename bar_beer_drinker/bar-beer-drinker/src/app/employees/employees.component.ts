@@ -4,7 +4,7 @@ import {Employee, EmployeesService} from "../employees.service";
 declare const Highcharts: any;
 
 @Component({
-  selector: 'app-employees',
+  selector: 'app/employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css']
 })

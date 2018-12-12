@@ -124,23 +124,23 @@ def get_beer_manufacturers(item_name):
         return result['manu']
 
 
-def get_people():
+def find_person(first):
     with engine.connect() as con:
-        rs = con.execute('SELECT first_name, last_name, city, phone FROM people;')
-        return [dict(row) for row in rs]
-
-
-def get_person_info(drinker_name):
-    with engine.connect() as con:
-        query = sql.text('SELECT * FROM people WHERE name = :name;')
-        rs = con.execute(query, name=drinker_name)
+        query = sql.text("SELECT * FROM  people WHERE CONCAT(first_name, '-', last_name)= :first;")
+        rs = con.execute(query, first=first)
         result = rs.first()
         if result is None:
             return None
         return dict(result)
 
 
-def get_employee_info():
+def get_people():
+    with engine.connect() as con:
+        rs = con.execute('SELECT * FROM people;')
+        return [dict(row) for row in rs]
+
+
+def get_employees():
     with engine.connect() as con:
         query = sql.text('SELECT * FROM employees')
         rs = con.execute(query)
